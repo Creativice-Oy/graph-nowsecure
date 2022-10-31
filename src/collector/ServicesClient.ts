@@ -42,6 +42,10 @@ export class ServicesClient {
     return this.fetch(`resource/app/${ref}/vulnerability/`);
   }
 
+  listAssessments(platform: string, pkg: string): Promise<any[]> {
+    return this.fetch(`app/${platform}/${pkg}/assessment/`);
+  }
+
   fetch<T = object>(
     url: string,
     queryParams: QueryParam = {},

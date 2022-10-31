@@ -62,6 +62,23 @@ export const convertApp = (data: any): Entity =>
     },
   });
 
+export const convertAssessment = (data: any): Entity =>
+  createIntegrationEntity({
+    entityData: {
+      source: data,
+      assign: {
+        ...convertProperties(data),
+        _key: `app:mobile:assessment:${data.platform}:${data.package}`,
+        _type: 'nowsecure_assessment',
+        _class: ['Assessment'],
+        name: data.title,
+        displayName: data.title,
+        createdOn: parseTimePropertyValue(data.created),
+        webLink: `https://lab.nowsecure.com/app/${data.ref}`,
+      },
+    },
+  });
+
 export const convertFinding = (data: any, app: string): Entity =>
   createIntegrationEntity({
     entityData: {
